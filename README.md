@@ -46,7 +46,7 @@ This report provides an indepth understanding on how Domain Randomization helps 
 <a href="https://docs.google.com/document/d/1WAzdqlWE0RUns41-0P951mnsqMR7I2XV/edit?usp=sharing&ouid=112712585131518554614&rtpof=true&sd=true">Final Report</a><br>
 This final report contains an indepth explanation on the hardware/software used, the methods used to collect the data, an explanation on the data collected, trained and pruned, and the overall conclusions made from the trained and pruned datasets.
 
-![image](https://user-images.githubusercontent.com/589439/161171433-d2359618-b3dc-4839-b509-c938ce401f73.png)
+<a href="https://docs.google.com/document/d/1WAzdqlWE0RUns41-0P951mnsqMR7I2XV/edit?usp=sharing&ouid=112712585131518554614&rtpof=true&sd=true">![image](https://user-images.githubusercontent.com/589439/161171433-d2359618-b3dc-4839-b509-c938ce401f73.png)</a>
 
 
 ## Credits
