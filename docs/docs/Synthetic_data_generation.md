@@ -50,3 +50,43 @@ The Rtsubremes is to improve image quality by rendring extra frames between capt
 now choose the desired frame output and click run after choosing the location for output using the output tap the default will be in the Omniverse-launcher folder.
 
 ![image](https://github.com/mahmoud25112/omniverse-ai/assets/148357408/a6989ee5-be4e-44dd-ae2d-83315c8b06b8)
+ This was to show you how to create Synthetic data but since there is no format specified the basic writer provided by Nvidia will be used to write the annotations.
+
+So in order to get the data annotations in the desired format we will create out custom writer. 
+Refer to the Nvidia documentation for more info (https://docs.omniverse.nvidia.com/isaacsim/latest/replicator_tutorials/tutorial_replicator_recorder.html#custom-writer-example)
+We wiil run this script to generate our synthetic data in the Kitti format to utili Nvidia's TAO
+
+```python
+import omni.replicator.core as rep
+
+camera2= rep.create.camera()
+with rep.trigger.on_frame():
+    with camera:
+        rep.modify.pose(
+            position=rep.distribution.uniform((-5, 5, 1), (-1, 15, 5)),
+            look_at="/Root/Warehouse/SM_CardBoxA_3",
+        )
+
+render_product = rep.create.render_product(camera2, (512, 512))
+writer = rep.WriterRegistry.get("KittiWriter")
+writer.initialize(
+    output_dir=r"C:\\Users\\username\\AppData\\Local\\Programs\\omniverse-launcher\\",#output dirc
+    bbox_height_threshold=5,
+    fully_visible_threshold=0.75,
+    omit_semantic_type=True,
+    colorize_instance_segmentation= True
+)
+# Attach render_product to the writer
+writer.attach([render_product])
+
+rep.orchestrator.run()
+```
+
+![image](https://github.com/mahmoud25112/omniverse-ai/assets/148357408/37e4cae5-7203-4c50-bae8-aebc670715d1)
+
+refer to NVIDIA's ApI for replicator to further enhance the script by specifying the number of frames and intervals between them
+
+https://docs.omniverse.nvidia.com/py/replicator/1.5.1/source/extensions/omni.replicator.core/docs/API.html?highlight=rep%20orchestrator%20run#writers
+
+![image](https://github.com/mahmoud25112/omniverse-ai/assets/148357408/c019de03-578e-4824-b102-fced9f81f889)
+
